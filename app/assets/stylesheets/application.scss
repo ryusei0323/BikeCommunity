@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+/*font-awesome-sass用の記述*/
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+/*bootstrapようの記述*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
