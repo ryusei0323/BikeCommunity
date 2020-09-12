@@ -1,0 +1,47 @@
+<h1>メーカー一覧</h1>
+
+<% if @manufacturer.errors.any? %>
+  <div id="error_explanation">
+    <h3><%= @manufacturer.errors.count %> error prohibited this obj from being saved:</h3>
+    <ul>
+      <% @manufacturer.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @manufacturer, url: admin_manufacturers_path do |f| %>
+
+  <div class="form-group">
+    <%= f.label :メーカー, class: "col-xs-12" %>
+    <div class="col-xs-12">
+      <%= f.text_field :manufacturer_name, class: "form-control" %>
+    </div>
+  </div>
+
+  <%= f.label :manufacturer_name, "有効" %>
+  <%= f.radio_button :status, "有効", checked: true %>
+  <%= f.label :manufacturer_name, "無効" %>
+  <%= f.radio_button :status, "無効" %>
+  <%= f.submit '追加', class: "btn btn-pos col-xs-12"%>
+
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>メーカー</td>
+      <td>名前</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @manufacturers.each do |manufacturer| %>
+      <tr>
+        <td><%= manufacturer.manufacturer_name %></td>
+        <td><%= manufacturer.status %></td>
+        <td><%= link_to '編集', edit_admin_manufacturer_path(manufacturer.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,28 @@
+<h1>メーカー編集</h1>
+<% if @manufacturer.errors.any? %>
+  <div id="error_explanation">
+    <h3><%= @manufacturer.errors.count %> error prohibited this obj from being saved:</h3>
+    <ul>
+      <% @manufacturer.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @manufacturer, url: admin_manufacturer_path do |f| %>
+
+	<div class="form-group">
+	  <%= f.label :メーカー, class: "col-xs-12" %>
+	  <div class="col-xs-12">
+	    <%= f.text_field :manufacturer_name, class: "form-control" %>
+	  </div>
+	</div>
+
+	<%= f.label :manufacturer_name, "有効" %>
+	<%= f.radio_button :status, "有効", checked: true %>
+	<%= f.label :name, "無効" %>
+	<%= f.radio_button :status, "無効" %>
+	<%= f.submit '変更を保存', class: "btn btn-pos col-xs-12"%>
+
+<% end %>

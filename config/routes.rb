@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-	  devise_for :admin_users, controllers: {
+	  root 'customer/manufacturers#top'
+    devise_for :admin_users, controllers: {
 		  sessions: 'admin/admin_users/sessions',
 		  registrations: 'admin/admin_users/registrations',
 		  passwords: 'admin/admin_users/passwords'
@@ -24,9 +25,9 @@ Rails.application.routes.draw do
   namespace :customer do
     resources :bikes, only: [:index, :show]
     resources :favorites, only: [:index, :show, :create, :destroy]
-    resources :manufacturers, only: :index
     resources :posts
     resources :users, except: [:index, :new, :create, :destroy]
+    resources :manufacturers, only: :index
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
