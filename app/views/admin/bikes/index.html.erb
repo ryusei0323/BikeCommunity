@@ -1,0 +1,28 @@
+<h1>バイク一覧</h1>
+<%= link_to  '新規登録', new_admin_bike_path %>
+<table>
+  <thead>
+    <tr>
+      <td>バイクID</td>
+      <td>バイク名</td>
+      <td>メーカー</td>
+      <td>ステータス</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bikes.each do |bike| %>
+        <tr>
+          <td><%= bike.id %></td>
+          <td><%= link_to bike.bike_name, admin_bike_path(bike.id) %></td>
+          <td><%= bike.manufacturer.manufacturer_name %></td>
+          <td>
+            <% if bike.bike_status == true %>
+              表示中
+            <% else %>
+              表示停止
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

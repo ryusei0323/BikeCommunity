@@ -1,5 +1,5 @@
 class Manufacturer < ApplicationRecord
-
+  has_many :bikes, dependent: :destroy
 
   validates :manufacturer_name, presence: true, length: {maximum: 15}
 
