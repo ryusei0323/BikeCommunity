@@ -1,0 +1,41 @@
+<h1>マイページ編集</h1>
+<%= form_for(@user, url: customer_user_path) do |f| %>
+
+  <!-- エラーメッセージ表示-->
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= @user.errors.count %>error prohibited this obj from being saved:</h3><
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!-- エラーメッセージ表示-->
+
+  <div class="field">
+    <%= f.label :名前 %>
+    <%= f.text_field :name, class: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :プロフィール画像 %>
+    <%= f.attachment_field :profile_image, class: "user_image" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :アカウント名 %>
+    <%= f.text_field :account_name, class: "introduction" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :自己紹介 %>
+    <%= f.text_area :profile_sentence, class: "introduction" %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+<h1>マイページ詳細</h1>
+  <table>
+    <tr>
+      <td><h5>プロフィール画像</h5></td>
+      <td><td><%= image_tag attachment_url(@user, :profile_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300') %></td>
+    </tr>
+    <tr>
+      <td><h5>名前</h5></td>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <td><h5>アカウント名</h5></td>
+      <td><%= @user.account_name %></td>
+    </tr>
+    <tr>
+      <td><h5>自己紹介</h5></td>
+      <td><%= @user.profile_sentence %></td>
+    </tr>
+    <tr>
+      <td><h5>email</h5></td>
+      <td><%= @user.email %></td>
+    </tr>
+  </table>
+  <td><%= link_to "編集する", edit_customer_user_path(@user), class: "btn btn-primary" %></td>
