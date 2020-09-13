@@ -11,4 +11,7 @@ class User < ApplicationRecord
     validates :account_name
     validates :profile_sentence
   end
+
+  enum user_status: { '有効': true, '退会済': false }
+
 end
