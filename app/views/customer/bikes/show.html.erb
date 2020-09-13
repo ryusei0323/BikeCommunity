@@ -1,0 +1,31 @@
+<h1>バイク詳細</h1>
+  <div>
+    <%= attachment_image_tag @bike, :bike_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
+  </div>
+  <table>
+
+    <tr>
+      <th>バイク名</th>
+      <th><%= @bike.bike_name %></th>
+    </tr>
+
+    <tr>
+      <th>バイクタイプ名</th>
+      <th><%= @bike.bike_type_name %></th>
+    </tr>
+
+    <tr>
+      <th>排気量</th>
+      <th><%= @bike.displacement %></th>
+    </tr>
+
+    <tr>
+      <th>バイク説明文</th>
+      <th><%= @bike.bike_sentence %></th>
+    </tr>
+
+    <tr>
+      <th>メーカ名</th>
+      <th><%= @bike.manufacturer.manufacturer_name %></th>
+    </tr>
+  </table>

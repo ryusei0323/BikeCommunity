@@ -16,7 +16,7 @@
           <td><%= link_to bike.bike_name, admin_bike_path(bike.id) %></td>
           <td><%= bike.manufacturer.manufacturer_name %></td>
           <td>
-            <% if bike.bike_status == true %>
+            <% if bike.bike_status == '有効' %>
               表示中
             <% else %>
               表示停止
