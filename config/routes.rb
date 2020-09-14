@@ -24,10 +24,12 @@ Rails.application.routes.draw do
 
   namespace :customer do
     resources :bikes, only: [:index, :show]
-    resources :favorites, only: [:index, :show, :create, :destroy]
-    resources :posts
     resources :users, except: [:index, :new, :create, :destroy]
     resources :manufacturers, only: :index
+    resources :posts do
+      resources :post_comments, only: [:create, :destroy]
+      resources :favorites, only: [:index, :show, :create, :destroy]
+    end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
