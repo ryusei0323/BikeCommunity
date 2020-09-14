@@ -25,44 +25,44 @@ ActiveRecord::Schema.define(version: 2020_09_11_075622) do
   end
 
   create_table "bikes", force: :cascade do |t|
-    t.integer "manufacturer_id", null: false
-    t.string "bike_name", null: false
-    t.string "displacement", null: false
-    t.string "bike_image_id", null: false
-    t.string "bike_type_name", null: false
-    t.text "bike_sentence", null: false
+    t.integer "manufacturer_id"
+    t.string "bike_name"
+    t.string "displacement"
+    t.string "bike_image_id"
+    t.string "bike_type_name"
+    t.text "bike_sentence"
     t.boolean "bike_status", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "user_id", null: false
+    t.integer "post_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "manufacturers", force: :cascade do |t|
-    t.string "manufacturer_name", null: false
+    t.string "manufacturer_name"
     t.boolean "status", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "post_comments", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "user_id", null: false
-    t.text "comment", null: false
+    t.integer "post_id"
+    t.integer "user_id"
+    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "post_title", null: false
-    t.text "post_sentence", null: false
-    t.string "post_image_id", null: false
+    t.integer "user_id"
+    t.string "post_title"
+    t.text "post_sentence"
+    t.string "post_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
