@@ -1,6 +1,8 @@
 class Bike < ApplicationRecord
   belongs_to :manufacturer
 
+
+
   attachment :bike_image
 
     with_options presence: true do

@@ -4,12 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
+
+  has_many :posts, dependent: :destroy
+
   attachment :profile_image, destroy: false
 
   with_options presence: true do
     validates :name
     validates :account_name
-    validates :profile_sentence
   end
 
   enum user_status: { '有効': true, '退会済': false }

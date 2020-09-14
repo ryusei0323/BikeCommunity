@@ -1,5 +1,6 @@
-<h1>投稿編集</h1>
-<%= form_for @post, url: customer_post_path do |f| %>
+<h1>投稿新規作成</h1>
+
+<%= form_for @post, url: customer_posts_path do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h3><%= @post.errors.count %> error prohibited this obj from being saved:</h3>
