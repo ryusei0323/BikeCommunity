@@ -1,0 +1,25 @@
+<h1>投稿一覧</h1>
+
+<% @posts.each do |post| %>
+
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>タイトル</th>
+          <th>文</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <%= link_to customer_post_path(post.id) do %>
+              <%= attachment_image_tag post, :post_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
+            <% end %>
+          </th>
+          <th><%= link_to post.post_title, admin_post_path(post.id) %></th>
+          <th><%= post.post_sentence %></th>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>

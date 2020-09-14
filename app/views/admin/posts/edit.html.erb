@@ -1,0 +1,26 @@
+<h1>投稿編集</h1>
+<%= form_for @post, url: admin_post_path do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= @post.errors.count %> error prohibited this obj from being saved:</h3>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= attachment_image_tag @post, :post_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
+  <%= f.attachment_field :post_image, class: 'image-prev' %>
+
+  <%= f.label :タイトル %>
+  <%= f.text_field :post_title %>
+
+
+  <%= f.label :文 %>
+  <%= f.text_area :post_sentence %>
+
+  <%= f.submit %>
+
+<% end %>

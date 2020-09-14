@@ -1,0 +1,18 @@
+<h1>投稿詳細</h1>
+  <table>
+    <tr>
+      <td>
+        <%= attachment_image_tag @post, :post_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
+      </td>
+      <td>
+        <%= @post.post_title %>
+      </td>
+      <td>
+        <%= @post.post_sentence %>
+      </td>
+      <td>
+        <%= @post.user.name %>
+      </td>
+    </tr>
+  </table>
+  <td><%= link_to "編集する", edit_admin_post_path(@post), class: "btn btn-primary" %></td>
