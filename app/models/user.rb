@@ -7,6 +7,9 @@ class User < ApplicationRecord
 
   has_many :post_comments, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  #throughで使うモデルは必ず先に関連付けを行っていなければならない(今回で言う上記のfavorites)
+  has_many :favorite_posts, through: :favorites, source: :post
 
   attachment :profile_image, destroy: false
 

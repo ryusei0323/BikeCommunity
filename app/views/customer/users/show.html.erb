@@ -22,3 +22,10 @@
     </tr>
   </table>
   <td><%= link_to "編集する", edit_customer_user_path(@user), class: "btn btn-primary" %></td>
+
+
+  <h1>いいね一覧</h1>
+  <% @favorite_posts.each do |post| %>
+    <hr>
+    <p><span>投稿内容: </span><%=link_to post.post_title, customer_post_path(post.id) %></p>
+　<% end %>
