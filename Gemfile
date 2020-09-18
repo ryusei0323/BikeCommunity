@@ -66,10 +66,14 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # 導入するgem
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
-gem 'dotenv-rails'
 gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'kaminari', '~> 1.2.1'
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
 gem 'rubocop-airbnb'
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
+
