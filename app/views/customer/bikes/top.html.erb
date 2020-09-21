@@ -1,0 +1,10 @@
+<h1>top画面</h1>
+<% @bikes.each do |bike| %>
+  <% if bike.manufacturer.status == '有効' %>
+    <%= link_to(customer_bike_path(bike)) do %>
+      <%= image_tag attachment_url(bike, :bike_image, :fill, 300, 200, format: "jpg") %>
+      <%= bike.bike_name %>
+      <%= bike.manufacturer.manufacturer_name %>
+    <% end %>
+  <% end %>
+<% end %>

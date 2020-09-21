@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-	  root 'customer/manufacturers#top'
+	  root 'customer/bikes#top'
     devise_for :admin_users, controllers: {
 		  sessions: 'admin/admin_users/sessions',
 		  registrations: 'admin/admin_users/registrations',
