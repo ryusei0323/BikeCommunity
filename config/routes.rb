@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   end
 
   namespace :customer do
-    resources :bikes, only: [:index, :show]
+    resources :bikes, only: [:index, :show] do
+      get 'search/:id' => 'bikes#search', as: 'search', on: :collection
+    end
     resources :users, except: [:index, :new, :create, :destroy]
     resources :manufacturers, only: :index
     resources :posts do
