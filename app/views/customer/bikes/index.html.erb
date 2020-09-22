@@ -1,23 +1,32 @@
 <h1>バイク一覧</h1>
-<table>
-  <thead>
-    <tr>
-      <td>バイクID</td>
-      <td>バイク名</td>
-      <td>メーカー</td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @bikes.each do |bike| %>
-      <% if bike.manufacturer.status == '有効' %>
-        <tr>
-          <td><%= image_tag attachment_url(bike, :bike_image, :fill, 300, 200, format: "jpg") %></td>
-          <td><%= link_to bike.bike_name, customer_bike_path(bike.id) %></td>
-          <td><%= bike.manufacturer.manufacturer_name %></td>
-          <td>
-          </td>
-        </tr>
+
+<%= render "customer/bikes/search", manufacturers: @manufacturers %>
+<% if controller.action_name == "search" %>
+  <div class="title-box">
+  <h1 class="title"><%= @manufacturer.manufacturer_name %>一覧<span>(全 <%= @bikes.count %> 件)</span></h1>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <td>バイクID</td>
+        <td>バイク名</td>
+        <td>メーカー</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bikes.each do |bike| %>
+        <% if bike.manufacturer.status == '有効' %>
+          <tr>
+            <td><%= image_tag attachment_url(bike, :bike_image, :fill, 300, 200, format: "jpg") %></td>
+            <td><%= link_to bike.bike_name, customer_bike_path(bike.id) %></td>
+            <td><%= bike.manufacturer.manufacturer_name %></td>
+            <td>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+<% end %>
+

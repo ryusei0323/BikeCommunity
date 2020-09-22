@@ -1,4 +1,5 @@
 <h1>top画面</h1>
+<%= render "customer/bikes/search", manufacturers: @manufacturers %>
 <% @bikes.each do |bike| %>
   <% if bike.manufacturer.status == '有効' %>
     <%= link_to(customer_bike_path(bike)) do %>
@@ -8,3 +9,4 @@
     <% end %>
   <% end %>
 <% end %>
+
