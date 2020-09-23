@@ -1,32 +1,41 @@
-<h1>バイク詳細</h1>
-<%= render "customer/bikes/search", manufacturers: @manufacturers %>
+<div class="content">
   <div>
-    <%= attachment_image_tag @bike, :bike_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
+    <h1>バイク詳細</h1>
   </div>
-  <table>
+</div>
 
-    <tr>
-      <th>バイク名</th>
-      <th><%= @bike.bike_name %></th>
-    </tr>
 
-    <tr>
-      <th>バイクタイプ名</th>
-      <th><%= @bike.bike_type_name %></th>
-    </tr>
+<div class="col-xs-6 col-xs-offset-3">
+  <table class="table">
+    <thead class="thead">
+        <span>
+            <%= image_tag attachment_url(@bike, :bike_image, :fill, 700, 600, format: "jpg") %>
+        </span>
+        <tr>
+          <th>バイク名</th>
+          <th><%= @bike.bike_name %></th>
+        </tr>
 
-    <tr>
-      <th>排気量</th>
-      <th><%= @bike.displacement %></th>
-    </tr>
+        <tr>
+          <th>バイクタイプ名</th>
+          <th><%= @bike.bike_type_name %></th>
+        </tr>
 
-    <tr>
-      <th>バイク説明文</th>
-      <th><%= @bike.bike_sentence %></th>
-    </tr>
+        <tr>
+          <th>排気量</th>
+          <th><%= @bike.displacement %></th>
+        </tr>
 
-    <tr>
-      <th>メーカ名</th>
-      <th><%= @bike.manufacturer.manufacturer_name %></th>
-    </tr>
+        <tr>
+          <th>バイク説明文</th>
+          <th><%= @bike.bike_sentence %></th>
+        </tr>
+
+        <tr>
+          <th>メーカ名</th>
+          <th><%= @bike.manufacturer.manufacturer_name %></th>
+        </tr>
+      </table>
+    </thead>
   </table>
+</div>

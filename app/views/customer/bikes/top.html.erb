@@ -1,12 +1,29 @@
-<h1>top画面</h1>
-<%= render "customer/bikes/search", manufacturers: @manufacturers %>
+<div class="content">
+  <div>
+    <h1>top画面</h1>
+  </div>
+</div>
+<div class="search">
+  <div>
+    バイクを探す方はこちらからメーカーをお選びください<br>
+    <%= render "customer/bikes/search", manufacturers: @manufacturers %>
+  </div>
+</div>
+
 <% @bikes.each do |bike| %>
-  <% if bike.manufacturer.status == '有効' %>
-    <%= link_to(customer_bike_path(bike)) do %>
-      <%= image_tag attachment_url(bike, :bike_image, :fill, 300, 200, format: "jpg") %>
-      <%= bike.bike_name %>
-      <%= bike.manufacturer.manufacturer_name %>
-    <% end %>
-  <% end %>
+
+  <div class="bike">
+    <div>
+      <% if bike.manufacturer.status == '有効' %>
+        <%= link_to(customer_bike_path(bike)) do %>
+          <div><%= image_tag attachment_url(bike, :bike_image, :fill, 300, 200, format: "jpg") %></div>
+          <div>メーカー:<%= bike.manufacturer.manufacturer_name %></div>
+         <div>バイク名:<%= bike.bike_name %></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
+
+
 

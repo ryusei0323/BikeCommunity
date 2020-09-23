@@ -1,15 +1,25 @@
-<h1>バイク一覧</h1>
-
-<%= render "customer/bikes/search", manufacturers: @manufacturers %>
-<% if controller.action_name == "search" %>
-  <div class="title-box">
-  <h1 class="title"><%= @manufacturer.manufacturer_name %>一覧<span>(全 <%= @bikes.count %> 件)</span></h1>
+<div class="content">
+  <div>
+    <h1>バイク一覧</h1>
   </div>
+</div>
 
-  <table>
+<div class="search">
+  <div>
+    <%= render "customer/bikes/search", manufacturers: @manufacturers %>
+    <% if controller.action_name == "search" %>
+      <div class="title-box">
+        <h1 class="title"><%= @manufacturer.manufacturer_name %>のバイク一覧(全 <%= @bikes.count %> 件)</h1>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="col-xs-6 col-xs-offset-3">
+  <table class="table">
     <thead>
       <tr>
-        <td>バイクID</td>
+        <td>バイク画像</td>
         <td>バイク名</td>
         <td>メーカー</td>
       </tr>
@@ -26,7 +36,9 @@
           </tr>
         <% end %>
       <% end %>
+
     </tbody>
   </table>
-<% end %>
+</div>
+
 

@@ -1,3 +1,44 @@
 // Place all the styles related to the customer/bikes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.content {
+  background-color: #fff;
+
+  display: flex;
+  justify-content: center; /* 追加 */
+  align-items: center; /* 追加 */
+}
+.content > div {
+
+  margin: 5px;
+  font-size: 30px;
+}
+
+.search {
+
+
+  display: flex;
+  justify-content: center; /* 追加 */
+  align-items: center; /* 追加 */
+}
+.search > div {
+
+  margin: 5px;
+  font-size: 30px;
+}
+
+.bike {
+  background-color: #00c7ce;
+  height: 50vh;
+  padding: 10px;
+  bike-direction: row;
+  display: flex;
+  justify-content: center; /* 追加 */
+  align-items: center; /* 追加 */
+}
+.bike > div {
+  background-color: #fff;
+  margin: 5px;
+  font-size: 30px;
+}

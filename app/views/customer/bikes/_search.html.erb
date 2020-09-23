@@ -1,5 +1,3 @@
 <% manufacturers.each do |manufacturer| %>
-  <tr>
-    <td><%= link_to manufacturer.manufacturer_name, search_customer_bikes_path(manufacturer.id), method: :get, class: "link" %></td>
-  </tr>
+  <%= link_to manufacturer.manufacturer_name, search_customer_bikes_path(manufacturer.id), method: :get, class: "link" %>,
 <% end %>
