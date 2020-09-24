@@ -13,20 +13,31 @@
       <td>
         <%= @post.user.name %>
       </td>
+      <td>
+        <% if @post.favorited_by?(current_user) %>
+          <%= link_to customer_post_favorite_path(@post), method: :delete do %>
+            <i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></i>
+            <%= @post.favorites.count %>
+          <% end %>
+        <% else %>
+          <%= link_to customer_post_favorites_path(@post), method: :post do %>
+            <i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: grey;"></i>
+            <%= @post.favorites.count %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        コメント数：<%= @post.post_comments.count %>
+      </td>
+      <% if @post.user == current_user %>
+        <td>
+        <%= link_to "編集する", edit_customer_post_path(@post), class: "btn btn-primary" %>
+      </td>
+        <td><%= link_to "削除", customer_post_path(@post), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger destroy_post_#{@post.id}" %>
+        </td>
+      <% end %>
     </tr>
   </table>
-
-  <% if @post.favorited_by?(current_user) %>
-    <%= link_to customer_post_favorite_path(@post), method: :delete do %>
-      <i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></i>
-      <%= @post.favorites.count %>
-    <% end %>
-  <% else %>
-    <%= link_to customer_post_favorites_path(@post), method: :post do %>
-      <i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: grey;"></i>
-      <%= @post.favorites.count %>
-    <% end %>
-  <% end %>
 
   <% @post.post_comments.each do |post_comment| %>
     <div>
@@ -48,4 +59,3 @@
     </div>
     <%= f.submit '送信' %>
   <% end %>
-  <td><%= link_to "編集する", edit_customer_post_path(@post), class: "btn btn-primary" %></td>

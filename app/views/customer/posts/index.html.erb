@@ -1,26 +1,32 @@
 <h1>投稿一覧</h1>
-
+<% if user_signed_in? %>
 <%= link_to  '投稿新規作成', new_customer_post_path %>
-
+<% end %>
 <% @posts.each do |post| %>
 
     <table>
       <thead>
         <tr>
           <th></th>
+          <th>アカウント名</th>
           <th>タイトル</th>
-          <th>文</th>
+          <th>投稿内容</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th>
-            <%= link_to customer_post_path(post.id) do %>
-              <%= attachment_image_tag post, :post_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
-            <% end %>
-          </th>
-          <th><%= link_to post.post_title, customer_post_path(post.id) %></th>
-          <th><%= post.post_sentence %></th>
+          <% if user_signed_in? %>
+          <%= link_to customer_post_path(post.id) do %>
+            <th><%= attachment_image_tag post, :post_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %></th>
+          <% end %>
+            <th><%= post.user.account_name %></th>
+            <th><%= link_to post.post_title, customer_post_path(post.id) %></th>
+            <th><%= post.post_sentence %></th>
+          <% else %>
+            <th><%= attachment_image_tag post, :post_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>Z</th>
+            <th><%= post.post_title %></th>
+            <th><%= post.post_sentence %></th>
+          <% end %>
         </tr>
       </tbody>
     </table>
