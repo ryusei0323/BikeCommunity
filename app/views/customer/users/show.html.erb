@@ -1,8 +1,15 @@
-<h1>マイページ詳細</h1>
-  <table>
+<div class="content">
+  <div>
+    <h1><i class="fa fa-user"></i>マイページ詳細</h1>
+  </div>
+</div>
+
+<div class="col-xs-6">
+  <table class="table">
+    <h1><i class="fa fa-id-card"></i>プロフィール編集</h1>
     <tr>
       <td><h5>プロフィール画像</h5></td>
-      <td><td><%= image_tag attachment_url(@user, :profile_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300') %></td>
+      <td><%= image_tag attachment_url(@user, :profile_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300') %></td>
     </tr>
     <tr>
       <td><h5>名前</h5></td>
@@ -20,12 +27,18 @@
       <td><h5>email</h5></td>
       <td><%= @user.email %></td>
     </tr>
+    <td><%= link_to "編集する", edit_customer_user_path(@user), class: "btn btn-primary" %></td>
   </table>
-  <td><%= link_to "編集する", edit_customer_user_path(@user), class: "btn btn-primary" %></td>
+</div>
 
+<h1><i class="fa fa-heart"></i>いいね一覧</h1>
+<% @favorite_posts.each do |post| %>
+  <div class="col-xs-6">
+    <table class="table">
+      <tr>
+        <td>タイトル:&emsp;<%=link_to post.post_title, customer_post_path(post.id) %></td>
+      </tr>
+    </table>
+  </div>
+<% end %>
 
-  <h1>いいね一覧</h1>
-  <% @favorite_posts.each do |post| %>
-    <hr>
-    <p><span>投稿内容: </span><%=link_to post.post_title, customer_post_path(post.id) %></p>
-　<% end %>
