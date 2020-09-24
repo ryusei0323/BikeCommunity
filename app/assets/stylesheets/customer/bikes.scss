@@ -4,26 +4,21 @@
 
 .content {
   background-color: #fff;
-
   display: flex;
-  justify-content: center; /* 追加 */
-  align-items: center; /* 追加 */
+  justify-content: center;
+  align-items: center;
 }
 .content > div {
-
   margin: 5px;
   font-size: 30px;
 }
 
 .search {
-
-
   display: flex;
-  justify-content: center; /* 追加 */
-  align-items: center; /* 追加 */
+  justify-content: center;
+  align-items: center;
 }
 .search > div {
-
   margin: 5px;
   font-size: 30px;
 }
@@ -34,8 +29,8 @@
   padding: 10px;
   bike-direction: row;
   display: flex;
-  justify-content: center; /* 追加 */
-  align-items: center; /* 追加 */
+  justify-content: center;
+  align-items: center;
 }
 .bike > div {
   background-color: #fff;

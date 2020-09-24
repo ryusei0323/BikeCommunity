@@ -1,5 +1,11 @@
-<h1>投稿詳細</h1>
-  <table>
+<div class="content">
+  <div>
+    <h1>投稿詳細</h1>
+  </div>
+</div>
+
+<div class="col-xs-6 col-xs-offset-3">
+  <table class="table">
     <tr>
       <td>
         <%= attachment_image_tag @post, :post_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
@@ -32,30 +38,40 @@
       <% if @post.user == current_user %>
         <td>
         <%= link_to "編集する", edit_customer_post_path(@post), class: "btn btn-primary" %>
-      </td>
+        </td>
         <td><%= link_to "削除", customer_post_path(@post), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger destroy_post_#{@post.id}" %>
         </td>
       <% end %>
     </tr>
   </table>
+</div>
 
   <% @post.post_comments.each do |post_comment| %>
-    <div>
-      <div>
-         <%= post_comment.user.name %>
-      <% if post_comment.user == current_user %>
-          <div>
-            <%= link_to "削除", customer_post_path(@post), method: :delete, class: "btn btn-danger " %>
-        </div>
-      <% end %>
+    <div class="col-xs-6 col-xs-offset-3">
+      <table class="table">
+        <tr>
+          <td>
+            <%= post_comment.user.name %>
+          <td>
+          <td>
+            <%= post_comment.comment %>
+          </td>
+          <% if post_comment.user == current_user %>
+            <td>
+              <%= link_to "削除", customer_post_path(@post), method: :delete, class: "btn btn-danger " %>
+            </td>
+          <% end %>
+        </tr>
+      </table>
     </div>
   <% end %>
 
-  <%= form_for [:customer, @post, @post_comment] do |f| %>
-    <div class="row">
-      <div class="col-sm-12">
+
+  <div class="col-sm-8 col-xs-offset-2">
+    <%= form_for [:customer, @post, @post_comment] do |f| %>
+      <div>
         <%= f.text_field :comment, class: "form-control",placeholder: "コメントをここに" %>
       </div>
-    </div>
-    <%= f.submit '送信' %>
-  <% end %>
+      <%= f.submit '送信' %>
+    <% end %>
+  </div>
