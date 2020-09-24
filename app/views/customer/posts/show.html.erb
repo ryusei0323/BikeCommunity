@@ -1,6 +1,6 @@
 <div class="content">
   <div>
-    <h1>投稿詳細</h1>
+    <h1><i class="fa fa-blog"></i>投稿詳細</h1>
   </div>
 </div>
 
@@ -10,15 +10,23 @@
       <td>
         <%= attachment_image_tag @post, :post_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
       </td>
+    </tr>
+    <tr>
       <td>
         <%= @post.post_title %>
       </td>
+    </tr>
+    <tr>
       <td>
         <%= @post.post_sentence %>
       </td>
+    </tr>
+    <tr>
       <td>
         <%= @post.user.name %>
       </td>
+    </tr>
+    <tr>
       <td>
         <% if @post.favorited_by?(current_user) %>
           <%= link_to customer_post_favorite_path(@post), method: :delete do %>
@@ -32,6 +40,8 @@
           <% end %>
         <% end %>
       </td>
+    </tr>
+    <tr>
       <td>
         コメント数：<%= @post.post_comments.count %>
       </td>
@@ -51,11 +61,16 @@
       <table class="table">
         <tr>
           <td>
+            <h3>コメント</h3>
             <%= post_comment.user.name %>
-          <td>
+          </td>
+        </tr>
+        <tr>
           <td>
             <%= post_comment.comment %>
           </td>
+        </tr>
+        <tr>
           <% if post_comment.user == current_user %>
             <td>
               <%= link_to "削除", customer_post_path(@post), method: :delete, class: "btn btn-danger " %>
