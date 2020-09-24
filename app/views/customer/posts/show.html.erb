@@ -56,37 +56,37 @@
   </table>
 </div>
 
-  <% @post.post_comments.each do |post_comment| %>
-    <div class="col-xs-6 col-xs-offset-3">
-      <table class="table">
-        <tr>
+<% @post.post_comments.each do |post_comment| %>
+  <div class="col-xs-6 col-xs-offset-3">
+    <table class="table">
+      <tr>
+        <td>
+          <h3>コメント</h3>
+          <%= post_comment.user.name %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= post_comment.comment %>
+        </td>
+      </tr>
+      <tr>
+        <% if post_comment.user == current_user %>
           <td>
-            <h3>コメント</h3>
-            <%= post_comment.user.name %>
+            <%= link_to "削除", customer_post_path(@post), method: :delete, class: "btn btn-danger " %>
           </td>
-        </tr>
-        <tr>
-          <td>
-            <%= post_comment.comment %>
-          </td>
-        </tr>
-        <tr>
-          <% if post_comment.user == current_user %>
-            <td>
-              <%= link_to "削除", customer_post_path(@post), method: :delete, class: "btn btn-danger " %>
-            </td>
-          <% end %>
-        </tr>
-      </table>
-    </div>
-  <% end %>
-
-
-  <div class="col-sm-8 col-xs-offset-2">
-    <%= form_for [:customer, @post, @post_comment] do |f| %>
-      <div>
-        <%= f.text_field :comment, class: "form-control",placeholder: "コメントをここに" %>
-      </div>
-      <%= f.submit '送信' %>
-    <% end %>
+        <% end %>
+      </tr>
+    </table>
   </div>
+<% end %>
+
+
+<div class="col-sm-8 col-xs-offset-2">
+  <%= form_for [:customer, @post, @post_comment] do |f| %>
+    <div>
+      <%= f.text_field :comment, class: "form-control",placeholder: "コメントをここに" %>
+    </div>
+    <%= f.submit '送信' %>
+  <% end %>
+</div>
