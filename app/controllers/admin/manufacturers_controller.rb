@@ -1,4 +1,5 @@
 class Admin::ManufacturersController < ApplicationController
+  before_action :authenticate_admin_user!
 
   def index
   	@manufacturers = Manufacturer.all
