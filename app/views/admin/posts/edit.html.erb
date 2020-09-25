@@ -1,4 +1,9 @@
-<h1>投稿編集</h1>
+<div class="content">
+  <div>
+    <h1><i class="fa fa-blog"></i>投稿編集</h1>
+  </div>
+</div>
+
 <%= form_for @post, url: admin_post_path do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
@@ -10,17 +15,31 @@
       </ul>
     </div>
   <% end %>
-
-  <%= attachment_image_tag @post, :post_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
-  <%= f.attachment_field :post_image, class: 'image-prev' %>
-
-  <%= f.label :タイトル %>
-  <%= f.text_field :post_title %>
-
-
-  <%= f.label :文 %>
-  <%= f.text_area :post_sentence %>
-
-  <%= f.submit %>
-
+  <div class="col-xs-8 col-xs-offset-2">
+    <table class="table">
+      <tr>
+        <td>
+          <%= attachment_image_tag @post, :post_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
+          <%= f.attachment_field :post_image, class: 'image-prev' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :タイトル %><br>
+          <%= f.text_field :post_title, class: "col-xs-12" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :投稿内容 %><br>
+          <%= f.text_area :post_sentence, class: "col-xs-12" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.submit %>
+        </td>
+      </tr>
+    </table>
+  </div>
 <% end %>

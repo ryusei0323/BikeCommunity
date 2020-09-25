@@ -1,25 +1,34 @@
-<h1>投稿一覧</h1>
-
+<div class="content">
+  <div>
+    <h1>投稿一覧</h1>
+  </div>
+</div>
 <% @posts.each do |post| %>
 
-    <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th>タイトル</th>
-          <th>文</th>
-        </tr>
-      </thead>
+  <div class="col-xs-6 col-xs-offset-3">
+    <table class="table">
       <tbody>
-        <tr>
-          <th>
-            <%= link_to customer_post_path(post.id) do %>
-              <%= attachment_image_tag post, :post_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
-            <% end %>
-          </th>
-          <th><%= link_to post.post_title, admin_post_path(post.id) %></th>
-          <th><%= post.post_sentence %></th>
-        </tr>
+          <tr>
+            <th></th>
+            <th>
+              <%= link_to admin_post_path(post.id) do %>
+                <%= attachment_image_tag post, :post_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
+              <% end %>
+            </th>
+          </tr>
+          <tr>
+            <th>アカウント名</th>
+            <th><%= post.user.account_name %></th>
+          </tr>
+          <tr>
+            <th>タイトル</th>
+            <th><%= link_to post.post_title, admin_post_path(post.id) %></th>
+          </tr>
+          <tr>
+            <th>投稿内容</th>
+            <th><%= post.post_sentence %></th>
+          </tr>
       </tbody>
     </table>
-  <% end %>
+  </div>
+<% end %>

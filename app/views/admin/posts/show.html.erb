@@ -1,18 +1,31 @@
-<h1>投稿詳細</h1>
-  <table>
+<div class="content">
+  <div>
+    <h1>投稿詳細</h1>
+  </div>
+</div>
+
+<div class="col-xs-6 col-xs-offset-3">
+  <table class="table">
+    <span>
+      <%= attachment_image_tag @post, :post_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
+    <span>
+    </tr>
     <tr>
-      <td>
-        <%= attachment_image_tag @post, :post_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
-      </td>
-      <td>
-        <%= @post.post_title %>
-      </td>
-      <td>
-        <%= @post.post_sentence %>
-      </td>
-      <td>
-        <%= @post.user.name %>
-      </td>
+      <th>アカウント名</th>
+      <th><%= @post.user.account_name %></th>
+    </tr>
+    <tr>
+      <th>タイトル</th>
+      <th><%= @post.post_title %></th>
+    </tr>
+    <tr>
+      <th>投稿内容</th>
+      <th><%= @post.post_sentence %></th>
+    </tr>
+    <tr>
+      <th><%= link_to "編集する", edit_admin_post_path(@post), class: "btn btn-primary" %></th>
+      <th><%= link_to "削除", admin_post_path(@post), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger destroy_post_#{@post.id}" %>
+        </th>
     </tr>
   </table>
-  <td><%= link_to "編集する", edit_admin_post_path(@post), class: "btn btn-primary" %></td>
+</div>
