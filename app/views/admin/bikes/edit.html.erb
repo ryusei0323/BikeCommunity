@@ -1,4 +1,9 @@
-<h1>バイク編集画面</h1>
+<div class="content">
+  <div>
+    <h1>バイク編集画面</h1>
+  </div>
+</div>
+
 <%= form_for @bike, url: admin_bike_path do |f| %>
   <% if @bike.errors.any? %>
     <div id="error_explanation">
@@ -10,26 +15,67 @@
       </ul>
     </div>
   <% end %>
-    <%= attachment_image_tag @bike, :bike_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
-    <%= f.attachment_field :bike_image, class: 'image-prev' %>
-
-    <%= f.label :バイク名 %>
-    <%= f.text_field :bike_name %>
-
-    <%= f.label :バイクタイプ名 %>
-    <%= f.text_field :bike_type_name %>
-
-    <%= f.label :排気量 %>
-    <%= f.text_field :displacement %>
-
-    <%= f.label :バイク説明文 %>
-    <%= f.text_area :bike_sentence %>
-
-    <%= f.label :メーカー名 %>
-    <%= f.collection_select :manufacturer_id, Manufacturer.where(status:'有効'), :id, :manufacturer_name, {} %>
-
-    <%= f.label :バイクステータス %>
-    <%= f.select :bike_status, [['有効'],['無効']], {} %>
-
-    <%= f.submit '変更を保存' %>
-  <% end %>
+  <div class="col-xs-8 col-xs-offset-2">
+    <table class="table">
+      <tr>
+        <td>
+          <%= attachment_image_tag @bike, :bike_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
+          <%= f.attachment_field :bike_image, class: 'image-prev' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :バイク名 %>
+        </td>
+        <td>
+          <%= f.text_field :bike_name, class: "col-xs-12" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :バイクタイプ名 %>
+        </td>
+        <td>
+          <%= f.text_field :bike_type_name, class: "col-xs-12" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :排気量 %>
+        </td>
+        <td>
+          <%= f.text_field :displacement, class: "col-xs-12" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :バイク説明文 %>
+        </td>
+        <td>
+          <%= f.text_area :bike_sentence, class: "col-xs-12" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :メーカー名 %>
+        </td>
+        <td>
+          <%= f.collection_select :manufacturer_id, Manufacturer.where(status:'有効'), :id, :manufacturer_name, {} %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :バイクステータス %>
+        </td>
+        <td>
+          <%= f.select :bike_status, [['有効'],['無効']], {} %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.submit '変更を保存' %>
+        </td>
+      </tr>
+    </table>
+  </div>
+<% end %>

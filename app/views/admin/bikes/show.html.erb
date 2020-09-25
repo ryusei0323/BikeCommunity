@@ -1,8 +1,15 @@
-<h1>バイク詳細</h1>
+<div class="content">
   <div>
-    <%= attachment_image_tag @bike, :bike_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
+    <h1>バイク詳細</h1>
   </div>
-  <table>
+</div>
+
+<div class="col-xs-6 col-xs-offset-3">
+  <table class="table">
+    <span>
+      <%= attachment_image_tag @bike, :bike_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300' %>
+    </span>
+
     <tr>
       <th>バイクID</th>
       <th><%= @bike.id %></th>
@@ -43,7 +50,10 @@
         <% end %>
       </th>
     </tr>
-
+    <tr>
+      <th><%= link_to "編集する", edit_admin_bike_path(@bike), class: "btn btn-primary" %></th>
+    </tr>
   </table>
-  <td><%= link_to "編集する", edit_admin_bike_path(@bike), class: "btn btn-primary" %></td>
+</div>
+
 
