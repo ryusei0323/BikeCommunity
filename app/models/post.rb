@@ -9,6 +9,7 @@ class Post < ApplicationRecord
   validates :post_title, presence: true
   validates :post_sentence, presence: true, length: {maximum: 200}
 
+#すでにいいねをしていればtrueを返す
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end

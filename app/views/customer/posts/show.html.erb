@@ -12,77 +12,60 @@
       </td>
     </tr>
     <tr>
-      <td>
-        <%= @post.post_title %>
-      </td>
+      <td>アカウント名&emsp;&emsp;<%= @post.user.account_name %></td>
     </tr>
     <tr>
-      <td>
-        <%= @post.post_sentence %>
-      </td>
+      <td>タイトル&emsp;&emsp;<%= @post.post_title %></td>
     </tr>
     <tr>
-      <td>
-        <%= @post.user.name %>
-      </td>
+      <td>投稿内容&emsp;&emsp;<%= @post.post_sentence %></td>
     </tr>
     <tr>
-      <td>
-        <% if @post.favorited_by?(current_user) %>
-          <%= link_to customer_post_favorite_path(@post), method: :delete do %>
-            <i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></i>
-            <%= @post.favorites.count %>
-          <% end %>
-        <% else %>
-          <%= link_to customer_post_favorites_path(@post), method: :post do %>
-            <i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: grey;"></i>
-            <%= @post.favorites.count %>
-          <% end %>
-        <% end %>
+      <td id="favorite_<%= @post.id %>">
+        <%= render partial: 'customer/favorites/favorite', locals: {post: @post} %>
       </td>
     </tr>
     <tr>
       <td>
         コメント数：<%= @post.post_comments.count %>
       </td>
+    </tr>
+    <tr>
       <% if @post.user == current_user %>
         <td>
         <%= link_to "編集する", edit_customer_post_path(@post), class: "btn btn-primary" %>
-        </td>
-        <td><%= link_to "削除", customer_post_path(@post), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger destroy_post_#{@post.id}" %>
+        <%= link_to "削除", customer_post_path(@post), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger destroy_post_#{@post.id}" %>
         </td>
       <% end %>
     </tr>
   </table>
 </div>
 
-<% @post.post_comments.each do |post_comment| %>
-  <div class="col-xs-6 col-xs-offset-3">
-    <table class="table">
-      <tr>
-        <td>
-          <h3>コメント</h3>
-          <%= post_comment.user.name %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= post_comment.comment %>
-        </td>
-      </tr>
-      <tr>
-        <% if post_comment.user == current_user %>
-          <td>
-            <%= link_to "削除", customer_post_path(@post), method: :delete, class: "btn btn-danger " %>
-          </td>
-        <% end %>
-      </tr>
-    </table>
-  </div>
-<% end %>
+<div class="col-xs-6 col-xs-offset-3">
+  <table class="table">
+    <h1>コメント</h1>
+    <% @post.post_comments.each do |post_comment| %>
+      <tbody>
+        <tr>
+          <td>アカウント名&emsp;&emsp;<%= @post.user.account_name %></td>
+        </tr>
+        <tr>
+          <td>内容&emsp;&emsp;<%= post_comment.comment %></td>
+        </tr>
+        <tr>
+          <% if post_comment.user == current_user %>
+            <td>
+              <%= link_to "削除", customer_post_path(@post), method: :delete, class: "btn btn-danger " %>
+            </td>
+          <% end %>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+</div>
 
 
-<div class="col-sm-8 col-xs-offset-2">
+<div class="col-sm-6 col-xs-offset-3">
   <%= form_for [:customer, @post, @post_comment] do |f| %>
     <div>
       <%= f.text_field :comment, class: "form-control",placeholder: "コメントをここに" %>
