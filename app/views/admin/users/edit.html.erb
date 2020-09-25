@@ -1,87 +1,72 @@
-<h1><%= @user.name %>さんの会員情報編集</h1>
+<div class="content">
+  <div>
+    <h1><%= @user.name %>さんの会員情報編集</h1>
+  </div>
+</div>
 
-<div class="form-horizontal" role="form">
-  <%= form_for(@user, url: admin_user_path) do |f| %>
-    <% if @user.errors.any? %>
-      <div id="error_explanation">
-      <h3><%= @user.errors.count %> error prohibited this obj from being saved::</h3>
-        <ul>
-          <% @user.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-
-    <div class="form-group">
-      <div class="col-xs-2">
-        <label for="会員Id">会員Id</label>
-      </div>
-      <div class="col-xs-10">
-        <label for="customer id"><%= @user.id %></label>
-      </div>
+<%= form_for(@user, url: admin_user_path) do |f| %>
+  <!-- エラーメッセージ表示-->
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= @user.errors.count %>error prohibited this obj from being saved:</h3><
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
-
-    <div class="form-group">
-      <div class="col-xs-2">
-        <%= f.label :氏名 %>
-      </div>
-      <div class="col-xs-3">
-        <%= f.text_field :name, class: "form-control name" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-xs-2">
-        <%= f.label :アカウント名 %>
-      </div>
-      <div class="col-xs-3">
-        <%= f.text_field :account_name, class: "form-control account_name" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-xs-2">
-        <%= image_tag attachment_url(@user, :profile_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300') %>
-      </div>
-      <div class="col-xs-3">
-        <%= f.attachment_field :profile_image %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-xs-2">
-        <%= f.label :自己紹介 %>
-      </div>
-      <div class="col-xs-6">
-        <%= f.text_field :profile_sentence, class: "form-control profile_sentence" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-xs-2">
-        <%= f.label :メールアドレス %>
-      </div>
-      <div class="col-xs-6">
-        <%= f.email_field :email, class: "form-control email" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-xs-2">
-        <%= f.label :会員ステータス %>
-      </div>
-      <div class="col-xs-6">
-        <%= f.radio_button :user_status, :有効, class: "user_status" %>
+  <% end %>
+  <!-- エラーメッセージ表示-->
+  <div class="col-xs-8 col-xs-offset-2">
+    <table class="table">
+      <tr>
+        <td>
+          <%= f.label :名前 %>
+        </td>
+        <td>
+          <%= f.text_field :name, class: "form-control email" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :アカウント名 %>
+        </td>
+        <td>
+          <%= f.text_field :account_name, class: "form-control email" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :自己紹介 %>
+        </td>
+        <td>
+          <%= f.text_area :profile_sentence, class: "form-control email" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :メールアドレス %>
+        </td>
+        <td>
+          <%= f.email_field :email, class: "form-control email" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+           <%= f.label :会員ステータス %>
+        </td>
+        <td>
+          <%= f.radio_button :user_status, :有効, class: "user_status" %>
         <%= f.label :有効 %>
         <%= f.radio_button :user_status, :退会済, class: "user_status" %>
         <%= f.label :退会済み %>
-      </div>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "変更を保存する", class: "btn btn-success" %>
-    </div>
-  <% end %>
-</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+         <%= f.submit "変更を保存する", class: "btn btn-success" %>
+       </td>
+     </tr>
+   </table>
+  </div>
+<% end %>

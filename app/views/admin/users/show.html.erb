@@ -1,5 +1,11 @@
-<h1><%= @user.name %>さんの会員詳細</h1>
-<table>
+<div class="content">
+  <div>
+    <h1><%= @user.name %>さんの会員詳細</h1>
+  </div>
+</div>
+
+<div class="col-xs-6 col-xs-offset-3">
+  <table class="table">
   <tr>
     <td><h5>会員ID</h5></td>
     <td><%= @user.id %></td>
@@ -13,7 +19,7 @@
   </tr>
   <tr>
       <td><h5>プロフィール画像</h5></td>
-      <td><td><%= image_tag attachment_url(@user, :profile_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300') %></td>
+      <td><%= image_tag attachment_url(@user, :profile_image, :fill, 300, 300, fallback: 'no-image.jpg', size: '300x300') %></td>
     </tr>
     <tr>
       <td><h5>名前</h5></td>
@@ -31,5 +37,8 @@
       <td><h5>email</h5></td>
       <td><%= @user.email %></td>
     </tr>
+    <tr>
+      <td><%= link_to "編集する", edit_admin_user_path(@user), class: "btn btn-primary" %></td>
+    </tr>
   </table>
-  <td><%= link_to "編集する", edit_admin_user_path(@user), class: "btn btn-primary" %></td>
+</div>
