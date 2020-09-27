@@ -20,4 +20,8 @@ class User < ApplicationRecord
 
   enum user_status: { '有効': true, '退会済': false }
 
+  def active_for_authentication?
+  super && self.user_status == '有効'
+end
+
 end

@@ -17,4 +17,13 @@ class Customer::Users::SessionsController < Devise::SessionsController
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:account_name])
   end
+
+  def reject_user
+    user = User.find_by(email: params[:user][:email].downcase)
+    if user
+      if (user.valid_password?(params[:customer][:password]) && (customer.active_for_authentication? == true))
+        redirect_to new_user_session_path
+      end
+    end
+  end
 end

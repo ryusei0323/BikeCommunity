@@ -20,6 +20,14 @@ class Customer::UsersController < ApplicationController
     end
   end
 
+  def withdraw
+    @user = User.find(current_user.id)
+    @user.update(user_status: "退会済")
+    reset_session
+    flash[:notice] = "退会しました"
+    redirect_to root_path
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :account_name, :profile_sentence, :profile_image_id, :user_status)

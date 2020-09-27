@@ -68,3 +68,4 @@
    </table>
   </div>
 <% end %>
+<button type="button" class="btn btn-outline-secondary"><%= link_to "退会する", withdraw_customer_user_path, method: :patch, data: {confirm: "退会すると登録されたアカウントをご使用することはできません。本当に退会しますか？"} %></button>

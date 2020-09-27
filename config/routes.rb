@@ -26,7 +26,11 @@ Rails.application.routes.draw do
     resources :bikes, only: [:index, :show] do
       get 'search/:id' => 'bikes#search', as: 'search', on: :collection
     end
-    resources :users, except: [:index, :new, :create, :destroy]
+    resources :users, except: [:index, :new, :create, :destroy] do
+      member do
+        patch 'withdraw'
+      end
+    end
     resources :manufacturers, only: :index
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
