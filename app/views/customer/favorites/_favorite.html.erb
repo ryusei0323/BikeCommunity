@@ -1,10 +1,11 @@
 <% if post.favorited_by?(current_user) %>
-  <%= link_to customer_post_favorite_path(post), data: {"turbolinks" => false}, method: :delete, remote: true do %>
+  <%= link_to customer_post_favorite_path(post, post.id), method: :delete, remote: true do %>
+<!--ajaxを導入する場合、削除ボタンに関してはルートにidがついており、投稿のidも必要だったため、post.idをカンマで繋げる必要があります。-->
     <i class="fa fa-heart" style="color: red;"></i>
     <%= post.favorites.count %>
   <% end %>
 <% else %>
-  <%= link_to customer_post_favorites_path(post), data: {"turbolinks" => false}, method: :post, remote: true do %>
+  <%= link_to customer_post_favorites_path(post), method: :post, remote: true do %>
     <i class="fa fa-heart" style="color: grey;"></i>
     <%= post.favorites.count %>
   <% end %>
