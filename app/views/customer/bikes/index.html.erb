@@ -16,28 +16,5 @@
 </div>
 
 <div class="col-xs-6 col-xs-offset-3">
-  <table class="table">
-    <thead>
-      <tr>
-        <td>バイク画像</td>
-        <td>バイク名</td>
-        <td>メーカー</td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @bikes.each do |bike| %>
-        <% if bike.manufacturer.status == '有効' %>
-          <tr>
-            <td><%= image_tag attachment_url(bike, :bike_image, :fill, 300, 200, format: "jpg") %></td>
-            <td><%= link_to bike.bike_name, customer_bike_path(bike.id) %></td>
-            <td><%= bike.manufacturer.manufacturer_name %></td>
-            <td>
-            </td>
-          </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render "customer/bikes/bike", bikes: @bikes %>
 </div>
-
-

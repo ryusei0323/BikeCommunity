@@ -1,29 +1,21 @@
 <div class="content">
   <div>
-    <h1>top画面</h1>
+    <h1>BikeCommunity</h1>
   </div>
 </div>
-<div class="search">
+
+<div class="col-xs-10 col-xs-offset-1">
+  <h5>このサイトはバイクを購入したいと考えている人が参考にできるようなバイクの特徴についてまとめたサイトとバイクを持っている人同士が繋がることを目的としたコミュニティーサイトになっております。</h5>
+</div>
+
+<div class="col-xs-3">
+  <h3>バイクを探す方はこちらからメーカーをお選びください</h3>
   <div>
-    バイクを探す方はこちらからメーカーをお選びください<br>
-    <%= render "customer/bikes/search", manufacturers: @manufacturers %>
+    <h3><i class="fas fa-search"></i><%= render "customer/bikes/search", manufacturers: @manufacturers %></h3>
   </div>
 </div>
 
-<% @bikes.each do |bike| %>
 
-  <div class="bike">
-    <div>
-      <% if bike.manufacturer.status == '有効' %>
-        <%= link_to(customer_bike_path(bike)) do %>
-          <div><%= image_tag attachment_url(bike, :bike_image, :fill, 300, 200, format: "jpg") %></div>
-          <div>メーカー:<%= bike.manufacturer.manufacturer_name %></div>
-         <div>バイク名:<%= bike.bike_name %></div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-<% end %>
-
-
-
+<div class="col-xs-8 col-xs-offset-3">
+  <%= render "customer/bikes/bike", bikes: @bikes %>
+</div>
