@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 	namespace :admin do
     resources :bikes
     resources :manufacturers, except: [:new, :show, :destroy]
-    resources :posts, except: [:new, :create, :destroy]
+    resources :posts, except: [:new, :create]
     resources :users, except: [:new, :create, :destroy]
   end
 

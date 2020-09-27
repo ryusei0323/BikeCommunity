@@ -13,7 +13,7 @@ class Admin::BikesController < ApplicationController
     @bike = Bike.new(bike_params)
     if @bike.save
       flash[:notice] = 'バイクを作成しました'
-      redirect_to admin_bike_path(@bike.id)
+      redirect_to admin_bikes_path
     else
       render :new
     end
