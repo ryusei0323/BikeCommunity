@@ -2,12 +2,12 @@ class Customer::BikesController < ApplicationController
 
   def top
     #アクセスされたバイクの記事上位５件くらい表示できるランキング機能を作りたい
-    @manufacturers = Manufacturer.where(status: true)
-    @bikes = Bike.where(bike_status: true).limit(4)
+    @manufacturers = Manufacturer.active
+    @bikes = Bike.active.limit(4)
   end
 
   def index
-    @bikes = Bike.where(bike_status: true)
+    @bikes = Bike.active
     @manufacturers = Manufacturer.active
   end
 
@@ -17,7 +17,7 @@ class Customer::BikesController < ApplicationController
   end
 
   def search
-    @bikes = Bike.where(manufacturer_id: params[:id]).where(bike_status: true)
+    @bikes = Bike.where(manufacturer_id: params[:id]).active
     @manufacturer = Manufacturer.find(params[:id])
     @manufacturers = Manufacturer.active
     render :index

@@ -14,4 +14,6 @@ class Bike < ApplicationRecord
       validates :bike_sentence
     end
   enum bike_status: {'有効': true, '無効': false}
+
+  scope :active, -> { where(bike_status: true) }
 end
